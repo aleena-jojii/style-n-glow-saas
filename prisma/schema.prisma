@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Pin {
+  id           String   @id @default(uuid())
+  title        String
+  imageUrl     String?   // optional string (nullable)
+  affiliateUrl String?   // optional string (nullable)
+  category     String?   // optional string (nullable)
+  userId       String
+  createdAt    DateTime @default(now())
+
+  @@map("pin")           // maps model Pin to table named 'pin'
+}
